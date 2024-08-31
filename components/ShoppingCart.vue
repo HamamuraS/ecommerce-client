@@ -3,36 +3,22 @@
 
     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
       <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasRightLabel">Shopping cart - ${{ totalSum }}</h5>
+        <h5 class="offcanvas-title" id="offcanvasRightLabel">Total - ${{ totalSum }}</h5>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
-      <div class="offcanvas-body">
+      <div class="offcanvas-body d-flex flex-column">
         <div v-for="(product, index) in modelValue" :key="'cart-product-'+index" class="card mb-3">
-          <div class="row">
-            <div class="col-md-4">
-              <img :src="product.photoURL" class="img-fluid rounded-start">
-            </div>
-            <div class="col-md-8">
-              <div class="card-body">
-                <h5 class="card-title">
-                  {{ product.name }}
-                </h5>
-                <p class="card-text">
-                  {{ product.description }}
-                </p>
-                <p class="card-text">
-                  ${{ product.price }} x {{ product.amount }}
-                </p>
-                <div class="d-grid">
-                  <button @click="removeFromCart(product)" class="btn btn-outline-secondary">
-                    Remove
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
+          <cart-item 
+            :product="product"
+            @remove-from-cart="removeFromCart"
+          />
         </div>
       </div>
+      <div class="mt-auto pt-3 border-top border-primary-subtle d-flex justify-content-center mb-3">
+          <button class="btn btn-outline-primary">
+            Checkout
+          </button>
+        </div>
     </div>
   </div>
 </template>

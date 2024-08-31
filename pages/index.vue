@@ -1,28 +1,28 @@
 <template>
   <div class="container">
+    
     <div class="row">
       <div v-for="(product, index) in products"
         key="'product-' + index"
         class="col-md-4">
-      <div class="card mb-3">
+      <div class="card mb-3 shadow product-card"
+        @click="selectProduct(product)"
+        data-bs-toggle="modal"
+        data-bs-target="#productModal"
+      >
         <img :src="product.photoURL" class="card-img-top">
         <div class="card-body">
           <h5 class="card-title">
             {{ product.name }}
           </h5>
-          <p class="card-text">
+          <p class="card-text d-inline-block text-truncate" style="max-width: 100%">
             {{ product.description }}
           </p>
-          <div class="d-grid">
-            <button @click="addToCart(product)" class="btn btn-outline-primary">
-              Add to cart
-            </button>
-          </div>
         </div>
       </div>
       </div>
     </div>
-    
+    <product-modal :product="selectedProduct" @add-to-cart="addToCart"/>
     <ShoppingCart v-model="shoppingCart"/>
   </div>
 </template>
@@ -49,7 +49,7 @@ export default {
         {
           uuid: '3',
           name: 'Camera model 3',
-          description: 'This is a camera model 3',
+          description: 'This is a camera model 3 with a long descriptiooooooooooooooooooooooooooooooooooooooooooooooooooooooon',
           price: 300,
           photoURL: 'https://images.pexels.com/photos/51383/photo-camera-subject-photographer-51383.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
         },
@@ -82,9 +82,11 @@ export default {
           photoURL: 'https://images.pexels.com/photos/51383/photo-camera-subject-photographer-51383.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
         }
       ],
-      shoppingCart: [
-        
-      ]
+      shoppingCart: [],
+      selectedProduct: {
+        name: 'Sample Product',
+        description: 'This is a sample product description.'
+      }
     }
   },
   mounted() {
@@ -117,7 +119,23 @@ export default {
         });
       }
       console.log('Product added to cart', product)
-    } 
+    },
+    selectProduct(product) {
+      this.selectedProduct = product;
+    }
   }
 }
 </script>
+
+
+<style scoped>
+.product-card {
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
+</style>
