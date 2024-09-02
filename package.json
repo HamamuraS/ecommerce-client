@@ -12,7 +12,9 @@
   "dependencies": {
     "@popperjs/core": "^2.11.8",
     "bootstrap": "^5.3.3",
+    "bootstrap-icons": "^1.11.3",
     "nuxt": "^3.13.0",
+    "nuxt-bootstrap-icons": "^2.1.0",
     "vue": "^3.4.38"
   }
 }

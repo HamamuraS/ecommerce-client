@@ -1,7 +1,7 @@
 <template>
   <div>
     <Navbar />
-    <div class="container mb-3">
+    <div class="container">
       <NuxtPage />
     </div>
   </div>

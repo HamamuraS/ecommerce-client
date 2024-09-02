@@ -11,10 +11,11 @@ export default defineNuxtConfig({
         { 
           rel: 'stylesheet', 
           href: "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        },
+        { 
+          rel: 'stylesheet', 
+          href: 'https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css'
         }
-      ],
-      style: [
-        
       ],
       noscript: [
         { children: 'JavaScript is required' }
@@ -22,5 +23,6 @@ export default defineNuxtConfig({
     }
   },
 
-  compatibilityDate: '2024-08-28'
+  compatibilityDate: '2024-08-28',
+  modules: ['nuxt-bootstrap-icons']
 })
